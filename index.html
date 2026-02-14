@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRUEBA MARCO</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#0049F7;
+  font-family:Tahoma;
+  color:#FFA6E7;
+  cursor:pointer;
+}
+
+.container{
+  text-align:center;
+  max-width:500px;
+}
+
+img{
+  width:100%;
+  max-height:300px;
+  object-fit:cover;
+  border-radius:15px;
+  display:none;
+}
+
+h1{
+  white-space:pre-line;
+}
+</style>
+</head>
+
+<body onclick="changeVibe()">
+
+<audio id="bgMusic" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+  <img id="vibeImage" src="images/1.jpg" alt="vibe image">
+  <h1 id="phrase">FELIZ 14 DE FEBRERO RENI HERMOSA ♥️</h1>
+</div>
+
+<script>
+
+const music = document.getElementById("bgMusic");
+let musicStarted = false;
+
+const phrases = [
+"Desde que te conozco\nMe has hecho feliz\nMe encanta estar contigo\nEres la mujer con la que siempre quiero estar\nTe amo mucho mi Reni hermosa ♥️",
+"♥️ Te amo amorcirris ♥️",
+"Feliz 14 de febrero mi osita bonita ♥️",
+"Después de todo, qué gusto estar vivos, y juntos ♥️",
+"Te quiero y te amo tanto, eres mi todo ♥️",
+"¡Ay, Amor! No cabe duda: Que eres todo lo que soñé ♥️",
+"Eres mi vida entera ♥️"
+];
+
+const images = [
+  "images/1.jpg",
+  "images/2.jpg",
+  "images/3.jpg",
+  "images/4.jpg",
+  "images/5.jpg",
+  "images/6.jpg",
+  "images/7.jpg",
+  "images/8.jpg"
+];
+
+const phraseEl = document.getElementById("phrase");
+const imageEl = document.getElementById("vibeImage");
+
+let showText = true;
+
+function changeVibe(){
+
+  if(!musicStarted){
+    music.play(); music.volume = 0.3; // 0 a 1
+    musicStarted = true;
+  }
+
+  if(showText){
+    phraseEl.style.display="none";
+    imageEl.src = images[Math.floor(Math.random()*images.length)];
+    imageEl.style.display="block";
+  }else{
+    imageEl.style.display="none";
+    phraseEl.textContent = phrases[Math.floor(Math.random()*phrases.length)];
+    phraseEl.style.display="block";
+  }
+
+  showText = !showText;
+}
+
+
+</script>
+
+</body>
+</html>
